@@ -4,31 +4,31 @@ ScavTrap::ScavTrap() : ClapTrap() {
   this->_attackDamage = 20;
   this->_energyPoints = 50;
   this->_hitPoints = 100;
-  std::cout << "ScavTrap default constructor called" << std::endl;
+  std::cout << "ScavTrap " << this->_name << " default constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
   this->_attackDamage = 20;
   this->_energyPoints = 50;
   this->_hitPoints = 100;
-  std::cout << "ScavTrap constructor called" << std::endl;
+  std::cout << "ScavTrap " << this->_name << " constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other._name){
   *this = other;
-  std::cout << "ScavTrap copy constructor called" << std::endl;
+  std::cout << "ScavTrap " << this->_name << " copy constructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &other) {
-  this->_attackDamage = other._attackDamage;
-  this->_energyPoints = other._energyPoints;
-  this->_hitPoints = other._hitPoints;
-  this->_name = other._name;
+  if (this != &other) {
+    ClapTrap::operator=(other);
+    this->_name = other._name;
+  }
   return (*this);
 }
 
 ScavTrap::~ScavTrap() {
-  std::cout << "ScavTrap destructor called" << std::endl;
+  std::cout << "ScavTrap " << this->_name << " destructor called" << std::endl;
 }
 
 void  ScavTrap::guardGate(void) {
